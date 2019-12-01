@@ -56,6 +56,7 @@ public class CadBairros extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
@@ -115,6 +116,14 @@ public class CadBairros extends javax.swing.JFrame {
         lblId.setText("ID");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 250, -1));
+
+        btnSair.setText("SAIR");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
         setSize(new java.awt.Dimension(516, 433));
         setLocationRelativeTo(null);
@@ -210,6 +219,11 @@ public class CadBairros extends javax.swing.JFrame {
         limparTela();
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     private void limparTela(){
         try{
             lblId.setText("ID");
@@ -276,6 +290,7 @@ public class CadBairros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

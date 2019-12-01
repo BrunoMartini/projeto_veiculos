@@ -44,7 +44,7 @@ public class VeiculoControle {
         PreparedStatement stmt = null;
         
         try{
-            stmt = con.prepareStatement("INSERT INTO veiculo(cor, placa, km, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO veiculo(cor, placa, km, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas, quantidade) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, objVeiculo.getCor());
             stmt.setString(2, objVeiculo.getPlaca());
             stmt.setString(3, objVeiculo.getKm());
@@ -56,6 +56,7 @@ public class VeiculoControle {
             stmt.setString(9, objVeiculo.getNome());
             stmt.setString(10, objVeiculo.getPreco());
             stmt.setString(11, objVeiculo.getNum_portas());
+            stmt.setString(12, objVeiculo.getQuantidade());
             
             stmt.executeUpdate();
             
@@ -80,7 +81,7 @@ public class VeiculoControle {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE veiculo SET cor=?, placa=?, km=?, chassi=?, renavam=?, combustivel=?, id_montadora=?, id_classificacao=?, nome=?, preco=?, num_portas=? WHERE id_veiculo=?");
+            stmt = con.prepareStatement("UPDATE veiculo SET cor=?, placa=?, km=?, chassi=?, renavam=?, combustivel=?, id_montadora=?, id_classificacao=?, nome=?, preco=?, num_portas=?,quantidade=? WHERE id_veiculo=?");
             stmt.setString(1, objVeiculo.getCor());
             stmt.setString(2, objVeiculo.getPlaca());
             stmt.setString(3, objVeiculo.getKm());
@@ -92,7 +93,8 @@ public class VeiculoControle {
             stmt.setString(9, objVeiculo.getNome());
             stmt.setString(10, objVeiculo.getPreco());
             stmt.setString(11, objVeiculo.getNum_portas());
-            stmt.setInt(12, objVeiculo.getId_veiculo());
+            stmt.setString(12, objVeiculo.getQuantidade());
+            stmt.setInt(13, objVeiculo.getId_veiculo());
             
             stmt.executeUpdate();
             
@@ -215,7 +217,7 @@ public class VeiculoControle {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT id_veiculo, cor, placa, km, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas";
+            SQL = " SELECT id_veiculo, cor, placa, km, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas,quantidade";
             SQL += " FROM veiculo ";
             SQL += " WHERE id_veiculo = '" + id + "'";
             SQL += " AND data_exclusao is null ";
@@ -240,6 +242,7 @@ public class VeiculoControle {
                     objVeiculo.setNome(rs.getString(10));
                     objVeiculo.setPreco(rs.getString(11)); 
                     objVeiculo.setNum_portas(rs.getString(12));
+                    objVeiculo.setQuantidade(rs.getString(13));
                 }
             }
 

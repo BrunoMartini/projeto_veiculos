@@ -23,6 +23,7 @@ public class Veiculo {
     private String nome;
     private String preco;
     private String num_portas;
+    private String quantidade;
 
     public int getId_veiculo() {
         return id_veiculo;
@@ -119,6 +120,16 @@ public class Veiculo {
     public void setNum_portas(String num_portas) {
         this.num_portas = num_portas;
     }
+
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+    
     
     
 }

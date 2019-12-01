@@ -92,6 +92,9 @@ public class CadCliente extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
         txtCpf = new javax.swing.JFormattedTextField();
         txtTelefone = new javax.swing.JFormattedTextField();
+        btnSair = new javax.swing.JButton();
+        addCidade = new javax.swing.JButton();
+        addBairro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -179,7 +182,7 @@ public class CadCliente extends javax.swing.JFrame {
                 btnLimparActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
+        getContentPane().add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
 
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -194,6 +197,30 @@ public class CadCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 140, -1));
+
+        btnSair.setText("SAIR");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, -1, -1));
+
+        addCidade.setText("CADASTRO CIDADE");
+        addCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCidadeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
+
+        addBairro.setText("CADASTRO BAIRRO");
+        addBairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBairroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -346,6 +373,23 @@ public class CadCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboEstadoItemStateChanged
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void addCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCidadeActionPerformed
+        // TODO add your handling code here:
+        CadCidade tela_cidade = new CadCidade();
+        tela_cidade.setVisible(true);
+    }//GEN-LAST:event_addCidadeActionPerformed
+
+    private void addBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBairroActionPerformed
+        // TODO add your handling code here:
+        CadBairros tela_bairros = new CadBairros();
+        tela_bairros.setVisible(true);
+    }//GEN-LAST:event_addBairroActionPerformed
+
     private void limparTela(){
         try{
             lblId.setText("ID");
@@ -443,7 +487,10 @@ public class CadCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBairro;
+    private javax.swing.JButton addCidade;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox jComboBairro;
     private javax.swing.JComboBox jComboCidade;

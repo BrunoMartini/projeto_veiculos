@@ -87,6 +87,8 @@ public class CadVeiculos extends javax.swing.JFrame {
         jtbVeiculo = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
+        lblQuantidade = new javax.swing.JLabel();
+        txtQuantidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -176,6 +178,10 @@ public class CadVeiculos extends javax.swing.JFrame {
         });
         getContentPane().add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, -1));
 
+        lblQuantidade.setText("Quantidade:");
+        getContentPane().add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
+        getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 70, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -221,6 +227,10 @@ public class CadVeiculos extends javax.swing.JFrame {
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um número corretamente", 'a');
                 return;
             }
+                if(txtQuantidade.getText().trim().length() == 0){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um número corretamente", 'a');
+                return;
+            }
             
             objVeiculo = new Veiculo();
             objVeiculo.setCor(txtCor.getText().trim());
@@ -232,6 +242,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             objVeiculo.setNome(txtNome.getText().trim());
             objVeiculo.setPreco(txtPreco.getText().trim());
             objVeiculo.setNum_portas(txtPortas.getText().trim());
+            objVeiculo.setQuantidade(txtQuantidade.getText().trim());
             
             Combos m = (Combos) jComboMontadora.getSelectedItem();
             String montadora = m.getCodigo();
@@ -323,6 +334,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             txtNome.setText("");
             txtPreco.setText("");
             txtPortas.setText("");
+            txtQuantidade.setText("");
             jComboMontadora.setSelectedIndex(-1);
             jComboClassificacao.setSelectedIndex(-1);
             
@@ -350,6 +362,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             txtNome.setText(objVeiculo.getNome());
             txtPreco.setText(objVeiculo.getPreco());
             txtPortas.setText(objVeiculo.getNum_portas());
+            txtQuantidade.setText(objVeiculo.getQuantidade());
             cbComboClassificacao.SetaComboBox(String.valueOf(objVeiculo.getId_classificacao()));
             cbComboMontadora.SetaComboBox(String.valueOf(objVeiculo.getId_montadora()));
             
@@ -425,6 +438,7 @@ public class CadVeiculos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblPortas;
     private javax.swing.JLabel lblPreco;
+    private javax.swing.JLabel lblQuantidade;
     private javax.swing.JTextField txtChassi;
     private javax.swing.JTextField txtCombustivel;
     private javax.swing.JTextField txtCor;
@@ -433,6 +447,7 @@ public class CadVeiculos extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlaca;
     private javax.swing.JTextField txtPortas;
     private javax.swing.JTextField txtPreco;
+    private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtRenavam;
     // End of variables declaration//GEN-END:variables
 }

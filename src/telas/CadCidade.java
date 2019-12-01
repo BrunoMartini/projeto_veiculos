@@ -71,6 +71,7 @@ public class CadCidade extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jComboEstado = new javax.swing.JComboBox();
+        btnSair = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,6 +145,14 @@ public class CadCidade extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
+
+        btnSair.setText("SAIR");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -248,6 +257,11 @@ public class CadCidade extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboEstadoActionPerformed
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     private void limparTela(){
         try{
             lblId.setText("ID");
@@ -327,6 +341,7 @@ public class CadCidade extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox jComboEstado;
     private javax.swing.JLabel jLabel1;
