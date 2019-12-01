@@ -15,6 +15,7 @@ public class CadastroUsuario {
     private String login;
     private String nome;
     private String senha;
+    private String nivel;
 
     public int getId_usuario() {
         return id_usuario;
@@ -49,6 +50,15 @@ public class CadastroUsuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+    
     
     
     

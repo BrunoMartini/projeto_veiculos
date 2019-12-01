@@ -44,6 +44,8 @@ public class CadUsuarios extends javax.swing.JFrame {
         btnDescrypt = new javax.swing.JButton();
         txtEntrada = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
+        lblNivel = new javax.swing.JLabel();
+        txtNivel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,6 +98,10 @@ public class CadUsuarios extends javax.swing.JFrame {
         });
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 100, 40));
 
+        lblNivel.setText("Nível:");
+        getContentPane().add(lblNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
+        getContentPane().add(txtNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 90, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,11 +122,16 @@ public class CadUsuarios extends javax.swing.JFrame {
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Informe uma senha corretamente", 'a');
                 return;
             }
+            if(txtNivel.getText().trim().length() == 0){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um nível corretamente", 'a');
+                return;
+            }
             
             objUsuario = new CadastroUsuario();
             objUsuario.setLogin(txtLogin.getText().trim());
             objUsuario.setNome(txtNome.getText().trim());
             objUsuario.setSenha(txtEntrada.getText().trim());
+            objUsuario.setNivel(txtNivel.getText().trim());
             
             if(!lblId.getText().equals("ID")){
                 objUsuario.setId_usuario(Integer.parseInt(lblId.getText()));
@@ -204,10 +215,12 @@ public class CadUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JTextField txtEntrada;
     private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextField txtNivel;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables

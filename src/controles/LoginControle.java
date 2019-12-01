@@ -29,7 +29,7 @@ public class LoginControle {
         comandoSQL.append(" SELECT login, nome");
         comandoSQL.append(" FROM usuarios");
         comandoSQL.append(" WHERE login = '"+ usuario +"'");
-        comandoSQL.append(" AND senha =  '"+ senha +"'");
+        comandoSQL.append(" AND senha = MD5('" + senha + "')");
 
         try {
             System.out.println("Vai Executar Conexão em buscar area");

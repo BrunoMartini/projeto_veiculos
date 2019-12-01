@@ -32,10 +32,11 @@ public class UsuarioControle {
         PreparedStatement stmt = null;
         
         try{
-            stmt = con.prepareStatement("INSERT INTO usuarios(login,nome,senha) VALUES(?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO usuarios(login,nome,senha,nivel) VALUES(?,?,?,?)");
             stmt.setString(1, objUsuario.getLogin());
             stmt.setString(2, objUsuario.getNome());
             stmt.setString(3, objUsuario.getSenha());
+            stmt.setString(4, objUsuario.getNivel());
             
             stmt.executeUpdate();
             
@@ -56,11 +57,12 @@ public class UsuarioControle {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE usuarios SET login=?, nome=?, senha=? WHERE id_usuario=?");
+            stmt = con.prepareStatement("UPDATE usuarios SET login=?, nome=?, senha=?, nivel=? WHERE id_usuario=?");
             stmt.setString(1, objUsuario.getLogin());
             stmt.setString(2, objUsuario.getNome());
             stmt.setString(3, objUsuario.getSenha());
-            stmt.setInt(4, objUsuario.getId_usuario());
+            stmt.setString(4, objUsuario.getNivel());
+            stmt.setInt(5, objUsuario.getId_usuario());
             
             stmt.executeUpdate();
             
@@ -82,7 +84,7 @@ public class UsuarioControle {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT id_usuario, login, nome, senha ";
+            SQL = " SELECT id_usuario, login, nome, senha, nivel ";
             SQL += " FROM usuarios ";
             SQL += " WHERE id_usuario = '" + id + "'";
             
@@ -99,6 +101,7 @@ public class UsuarioControle {
                     objUsuario.setLogin(rs.getString(2));
                     objUsuario.setNome(rs.getString(3));
                     objUsuario.setSenha(rs.getString(4));
+                    objUsuario.setNivel(rs.getString(5));
                 }
             }
 
