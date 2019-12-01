@@ -5,60 +5,39 @@
  */
 package ferramentas;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  *
  * @author Bruno Martini
  */
 public class Criptografia {
     
-    private static String table = " !\"#$%&\\'()*+,-./6853420719:;<=>?@XAOCDENUGHIPJLMNBQSTFVWRKYZ[\\\\]^_`qfbcwrdsemgjklnoptauvhyzix{|}~";
-    private static int key = 7; //Escolha um número de 2 a 10
-
-    private static String limparTexto(String text) {
-        text = text.replaceAll("\n", "");
-
-        for (int x = 0; x < text.length(); x++) {
-            int position = table.indexOf(text.charAt(x));
-
-            if (position == -1) {
-                text = text.replace(text.charAt(x), ' ');
-            }
-        }
-        return text;
-    }
     
-    public static String Encriptar(String text) {
-        String cleaned_text = limparTexto(text);
-
-        String encrypted = "";
-
-        for (int i = 0; i < cleaned_text.length(); i++) {
-            int position = table.indexOf(cleaned_text.charAt(i));
-
-            if ((position + key) < table.length()) {
-                encrypted += table.charAt(position + key);
-            } else {
-                encrypted += table.charAt((position + key) - table.length());
-            }
-        }
-        return encrypted;
-    }
-    
-    public static String Decriptar(String text) {
-        String cleaned_text = limparTexto(text);
-
-        String decrypted = "";
-
-        for (int x = 0; x < cleaned_text.length(); x++) {
-            int position = table.indexOf(cleaned_text.charAt(x));
-
-            if ((position - key) < 0) {
-                decrypted += table.charAt((position - key) + table.length());
-            } else {
-                decrypted += table.charAt(position - key);
-            }
-        }
-        return decrypted;
-    }
-    
+    public static String md5(String senha) {
+	String md5 = null;
+	
+	if(null == senha) return null;
+	
+	try{
+		MessageDigest digest = MessageDigest.getInstance("MD5");
+		
+		digest.update(senha.getBytes(), 0, senha.length());
+		
+		md5 = new BigInteger(1,digest.digest()).toString(16);
+		
+	   //System.out.println(md5);
+	
+	}catch(NoSuchAlgorithmException e){
+		e.printStackTrace();
+	}
+	return md5;
 }
+    
+    }
+    
+
+    
+

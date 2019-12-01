@@ -41,11 +41,11 @@ public class CadUsuarios extends javax.swing.JFrame {
         btnIncluir = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         btnEncrypt = new javax.swing.JButton();
-        btnDescrypt = new javax.swing.JButton();
         txtEntrada = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         lblNivel = new javax.swing.JLabel();
         txtNivel = new javax.swing.JTextField();
+        btnLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,15 +79,7 @@ public class CadUsuarios extends javax.swing.JFrame {
                 btnEncryptActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEncrypt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
-        btnDescrypt.setText("Decrypt");
-        btnDescrypt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDescryptActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDescrypt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+        getContentPane().add(btnEncrypt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
         getContentPane().add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 180, -1));
 
         btnLogin.setText("ACESSAR");
@@ -96,11 +88,19 @@ public class CadUsuarios extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 100, 40));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 100, 40));
 
         lblNivel.setText("Nível:");
         getContentPane().add(lblNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
         getContentPane().add(txtNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 90, -1));
+
+        btnLimpar.setText("LIMPAR");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,13 +159,8 @@ public class CadUsuarios extends javax.swing.JFrame {
 
     private void btnEncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncryptActionPerformed
         // TODO add your handling code here:
-        txtEntrada.setText(Criptografia.Encriptar(txtSenha.getText()));
+        txtEntrada.setText(Criptografia.md5(txtSenha.getText()));
     }//GEN-LAST:event_btnEncryptActionPerformed
-
-    private void btnDescryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescryptActionPerformed
-        // TODO add your handling code here:
-         txtEntrada.setText(Criptografia.Decriptar(txtSenha.getText()));
-    }//GEN-LAST:event_btnDescryptActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
@@ -173,6 +168,33 @@ public class CadUsuarios extends javax.swing.JFrame {
         tela_login.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // TODO add your handling code here:
+        limparTela();
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void limparTela(){
+        try{
+            lblId.setText("ID");
+            txtLogin.setText("");
+            txtNome.setText("");
+            txtSenha.setText("");
+            txtEntrada.setText("");
+            txtNivel.setText("");
+           
+            
+            
+            
+            
+           
+            btnIncluir.setEnabled(true);
+            
+            
+            
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -209,9 +231,9 @@ public class CadUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDescrypt;
     private javax.swing.JButton btnEncrypt;
     private javax.swing.JButton btnIncluir;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLogin;
