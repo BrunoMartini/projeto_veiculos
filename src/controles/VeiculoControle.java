@@ -44,19 +44,20 @@ public class VeiculoControle {
         PreparedStatement stmt = null;
         
         try{
-            stmt = con.prepareStatement("INSERT INTO veiculo(cor, placa, km, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas, quantidade) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO veiculo(cor, placa, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas, quantidade, km, ano) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, objVeiculo.getCor());
             stmt.setString(2, objVeiculo.getPlaca());
-            stmt.setString(3, objVeiculo.getKm());
-            stmt.setString(4, objVeiculo.getChassi());
-            stmt.setString(5, objVeiculo.getRenavam());
-            stmt.setString(6, objVeiculo.getCombustivel());
-            stmt.setInt(7, objVeiculo.getId_montadora());
-            stmt.setInt(8, objVeiculo.getId_classificacao());
-            stmt.setString(9, objVeiculo.getNome());
-            stmt.setString(10, objVeiculo.getPreco());
-            stmt.setString(11, objVeiculo.getNum_portas());
-            stmt.setString(12, objVeiculo.getQuantidade());
+            stmt.setString(3, objVeiculo.getChassi());
+            stmt.setString(4, objVeiculo.getRenavam());
+            stmt.setString(5, objVeiculo.getCombustivel());
+            stmt.setInt(6, objVeiculo.getId_montadora());
+            stmt.setInt(7, objVeiculo.getId_classificacao());
+            stmt.setString(8, objVeiculo.getNome());
+            stmt.setString(9, objVeiculo.getPreco());
+            stmt.setString(10, objVeiculo.getNum_portas());
+            stmt.setString(11, objVeiculo.getQuantidade());
+            stmt.setString(12, objVeiculo.getKm());
+            stmt.setString(13, objVeiculo.getAno());
             
             stmt.executeUpdate();
             
@@ -81,20 +82,21 @@ public class VeiculoControle {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE veiculo SET cor=?, placa=?, km=?, chassi=?, renavam=?, combustivel=?, id_montadora=?, id_classificacao=?, nome=?, preco=?, num_portas=?,quantidade=? WHERE id_veiculo=?");
+            stmt = con.prepareStatement("UPDATE veiculo SET cor=?, placa=?, chassi=?, renavam=?, combustivel=?, id_montadora=?, id_classificacao=?, nome=?, preco=?, num_portas=?,quantidade=?,km=?,ano=? WHERE id_veiculo=?");
             stmt.setString(1, objVeiculo.getCor());
             stmt.setString(2, objVeiculo.getPlaca());
-            stmt.setString(3, objVeiculo.getKm());
-            stmt.setString(4, objVeiculo.getChassi());
-            stmt.setString(5, objVeiculo.getRenavam());
-            stmt.setString(6, objVeiculo.getCombustivel());
-            stmt.setInt(7, objVeiculo.getId_montadora());
-            stmt.setInt(8, objVeiculo.getId_classificacao());
-            stmt.setString(9, objVeiculo.getNome());
-            stmt.setString(10, objVeiculo.getPreco());
-            stmt.setString(11, objVeiculo.getNum_portas());
-            stmt.setString(12, objVeiculo.getQuantidade());
-            stmt.setInt(13, objVeiculo.getId_veiculo());
+            stmt.setString(3, objVeiculo.getChassi());
+            stmt.setString(4, objVeiculo.getRenavam());
+            stmt.setString(5, objVeiculo.getCombustivel());
+            stmt.setInt(6, objVeiculo.getId_montadora());
+            stmt.setInt(7, objVeiculo.getId_classificacao());
+            stmt.setString(8, objVeiculo.getNome());
+            stmt.setString(9, objVeiculo.getPreco());
+            stmt.setString(10, objVeiculo.getNum_portas());
+            stmt.setString(11, objVeiculo.getQuantidade());
+            stmt.setString(12, objVeiculo.getKm());
+            stmt.setString(13, objVeiculo.getAno());
+            stmt.setInt(14, objVeiculo.getId_veiculo());
             
             stmt.executeUpdate();
             
@@ -217,7 +219,7 @@ public class VeiculoControle {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT id_veiculo, cor, placa, km, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas,quantidade";
+            SQL = " SELECT id_veiculo, cor, placa, chassi, renavam, combustivel, id_montadora, id_classificacao, nome, preco, num_portas,quantidade,km,ano";
             SQL += " FROM veiculo ";
             SQL += " WHERE id_veiculo = '" + id + "'";
             SQL += " AND data_exclusao is null ";
@@ -233,16 +235,17 @@ public class VeiculoControle {
                     objVeiculo.setId_veiculo(rs.getInt(1));
                     objVeiculo.setCor(rs.getString(2));
                     objVeiculo.setPlaca(rs.getString(3));
-                    objVeiculo.setKm(rs.getString(4));
-                    objVeiculo.setChassi(rs.getString(5));
-                    objVeiculo.setRenavam(rs.getString(6));
-                    objVeiculo.setCombustivel(rs.getString(7));
-                    objVeiculo.setId_montadora(rs.getInt(8));
-                    objVeiculo.setId_classificacao(rs.getInt(9));
-                    objVeiculo.setNome(rs.getString(10));
-                    objVeiculo.setPreco(rs.getString(11)); 
-                    objVeiculo.setNum_portas(rs.getString(12));
-                    objVeiculo.setQuantidade(rs.getString(13));
+                    objVeiculo.setChassi(rs.getString(4));
+                    objVeiculo.setRenavam(rs.getString(5));
+                    objVeiculo.setCombustivel(rs.getString(6));
+                    objVeiculo.setId_montadora(rs.getInt(7));
+                    objVeiculo.setId_classificacao(rs.getInt(8));
+                    objVeiculo.setNome(rs.getString(9));
+                    objVeiculo.setPreco(rs.getString(10)); 
+                    objVeiculo.setNum_portas(rs.getString(11));
+                    objVeiculo.setQuantidade(rs.getString(12));
+                    objVeiculo.setKm(rs.getString(13));
+                    objVeiculo.setAno(rs.getString(14));
                 }
             }
 

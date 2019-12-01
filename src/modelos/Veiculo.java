@@ -24,6 +24,7 @@ public class Veiculo {
     private String preco;
     private String num_portas;
     private String quantidade;
+    private String ano;
 
     public int getId_veiculo() {
         return id_veiculo;
@@ -128,6 +129,16 @@ public class Veiculo {
     public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+    
+    
     
     
     
