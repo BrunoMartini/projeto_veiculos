@@ -40,6 +40,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnBairros = new javax.swing.JMenuItem();
         mnCidades = new javax.swing.JMenuItem();
         mnUsuarios = new javax.swing.JMenuItem();
+        mnVeiculos = new javax.swing.JMenuItem();
+        mnMontadoras = new javax.swing.JMenuItem();
+        mnVendas = new javax.swing.JMenuItem();
         mnClientes = new javax.swing.JMenuItem();
         mnDiversos = new javax.swing.JMenu();
         mnFipe = new javax.swing.JMenuItem();
@@ -48,6 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnRelatorios = new javax.swing.JMenu();
         rMontadoras = new javax.swing.JMenuItem();
         rClientes = new javax.swing.JMenuItem();
+        rVeiculos = new javax.swing.JMenuItem();
         mnSair = new javax.swing.JMenu();
         mnSai = new javax.swing.JMenuItem();
 
@@ -80,6 +84,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnCadastros.add(mnUsuarios);
+
+        mnVeiculos.setText("Veículos");
+        mnVeiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVeiculosActionPerformed(evt);
+            }
+        });
+        mnCadastros.add(mnVeiculos);
+
+        mnMontadoras.setText("Montadoras");
+        mnCadastros.add(mnMontadoras);
+
+        mnVendas.setText("Vendas");
+        mnCadastros.add(mnVendas);
 
         mnClientes.setText("Clientes");
         mnClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +154,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnRelatorios.add(rClientes);
+
+        rVeiculos.setText("Veículos");
+        rVeiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rVeiculosActionPerformed(evt);
+            }
+        });
+        mnRelatorios.add(rVeiculos);
 
         jMenuBar1.add(mnRelatorios);
 
@@ -273,6 +299,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_rMontadorasActionPerformed
 
+    private void mnVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVeiculosActionPerformed
+        // TODO add your handling code here:
+        CadVeiculos tela_veiculos = new CadVeiculos();
+        tela_veiculos.setVisible(true);
+    }//GEN-LAST:event_mnVeiculosActionPerformed
+
+    private void rVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rVeiculosActionPerformed
+        // TODO add your handling code here:
+        try{
+            String wSelect = " SELECT nome, placa, ano,preco,km\n" +
+                    "FROM veiculo v\n" +
+                    "ORDER BY v.nome\n" +
+                    "LIMIT 10";
+            
+      
+            
+            RelatorioControle objRelController = new RelatorioControle();
+            ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
+            
+            JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
+            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioVeiculos.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
+            JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
+            jpViewer.setVisible(true);//abre o relatório para visualização
+            jpViewer.toFront();//define o form a frente da aplicação
+        
+        }catch(JRException ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
+        }
+    }//GEN-LAST:event_rVeiculosActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -319,12 +375,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnClientes;
     private javax.swing.JMenu mnDiversos;
     private javax.swing.JMenuItem mnFipe;
+    private javax.swing.JMenuItem mnMontadoras;
     private javax.swing.JMenuItem mnNotas;
     private javax.swing.JMenu mnRelatorios;
     private javax.swing.JMenuItem mnSai;
     private javax.swing.JMenu mnSair;
     private javax.swing.JMenuItem mnUsuarios;
+    private javax.swing.JMenuItem mnVeiculos;
+    private javax.swing.JMenuItem mnVendas;
     private javax.swing.JMenuItem rClientes;
     private javax.swing.JMenuItem rMontadoras;
+    private javax.swing.JMenuItem rVeiculos;
     // End of variables declaration//GEN-END:variables
 }
