@@ -49,10 +49,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnCalculadora = new javax.swing.JMenuItem();
         mnNotas = new javax.swing.JMenuItem();
         mnRelatorios = new javax.swing.JMenu();
-        rMontadoras = new javax.swing.JMenuItem();
         rClientes = new javax.swing.JMenuItem();
         rClientesFiltro = new javax.swing.JMenuItem();
         rVeiculos = new javax.swing.JMenuItem();
+        rVeiculosFiltro = new javax.swing.JMenuItem();
+        rEstoque = new javax.swing.JMenuItem();
         mnSair = new javax.swing.JMenu();
         mnSai = new javax.swing.JMenuItem();
 
@@ -140,14 +141,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         mnRelatorios.setText("Relatórios");
 
-        rMontadoras.setText("Montadoras");
-        rMontadoras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rMontadorasActionPerformed(evt);
-            }
-        });
-        mnRelatorios.add(rMontadoras);
-
         rClientes.setText("Clientes");
         rClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +164,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnRelatorios.add(rVeiculos);
+
+        rVeiculosFiltro.setText("Veículos - Filtro (Ano)");
+        rVeiculosFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rVeiculosFiltroActionPerformed(evt);
+            }
+        });
+        mnRelatorios.add(rVeiculosFiltro);
+
+        rEstoque.setText("Estoque");
+        rEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rEstoqueActionPerformed(evt);
+            }
+        });
+        mnRelatorios.add(rEstoque);
 
         jMenuBar1.add(mnRelatorios);
 
@@ -259,83 +268,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnSaiActionPerformed
 
-    private void rClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rClientesActionPerformed
-        // TODO add your handling code here:
-        try{
-            String wSelect = " SELECT c.nome as cliente,\n" +
-                    "to_char(dtnasc, 'dd/MM/yyyy') as dtnasc,\n" +
-                    "b.nome as cidade\n" +
-                    "FROM cliente c, cidade b\n" +
-                    "WHERE c.id_cidade = b.id_cidade\n" +
-                    "ORDER BY c.nome\n" +
-                    "LIMIT 10";
-            
-      
-            
-            RelatorioControle objRelController = new RelatorioControle();
-            ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
-            
-            JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
-            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioClientes.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
-            JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
-            jpViewer.setVisible(true);//abre o relatório para visualização
-            jpViewer.toFront();//define o form a frente da aplicação
-        
-        }catch(JRException ex){
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
-        }
-    }//GEN-LAST:event_rClientesActionPerformed
-
-    private void rMontadorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rMontadorasActionPerformed
-        // TODO add your handling code here:
-        try{
-            String wSelect = " SELECT id_montadora, descricao\n" +
-                    "FROM montadora m\n" +
-                    "ORDER BY m.descricao\n" +
-                    "LIMIT 10";
-            
-      
-            
-            RelatorioControle objRelController = new RelatorioControle();
-            ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
-            
-            JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
-            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/montadora.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
-            JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
-            jpViewer.setVisible(true);//abre o relatório para visualização
-            jpViewer.toFront();//define o form a frente da aplicação
-        
-        }catch(JRException ex){
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
-        }
-        
-    }//GEN-LAST:event_rMontadorasActionPerformed
-
     private void mnVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVeiculosActionPerformed
         // TODO add your handling code here:
         CadVeiculos tela_veiculos = new CadVeiculos();
         tela_veiculos.setVisible(true);
     }//GEN-LAST:event_mnVeiculosActionPerformed
 
+    private void rVeiculosFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rVeiculosFiltroActionPerformed
+        // TODO add your handling code here:
+        RelatorioVeiculos tela_veiculos = new RelatorioVeiculos();
+        tela_veiculos.setVisible(true);
+    }//GEN-LAST:event_rVeiculosFiltroActionPerformed
+
     private void rVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rVeiculosActionPerformed
         // TODO add your handling code here:
         try{
-            String wSelect = " SELECT nome, placa, ano,preco,km\n" +
-                    "FROM veiculo v\n" +
-                    "ORDER BY v.nome\n" +
-                    "LIMIT 10";
-            
-      
-            
+            String wSelect = " select * from veiculo a\n" +
+            "INNER JOIN montadora c ON c.id_montadora = a.id_veiculo";
+
             RelatorioControle objRelController = new RelatorioControle();
             ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
-            
+
             JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
-            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioVeiculos.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
+            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioVeiculo.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
             JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
             jpViewer.setVisible(true);//abre o relatório para visualização
             jpViewer.toFront();//define o form a frente da aplicação
-        
+
         }catch(JRException ex){
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
         }
@@ -346,6 +305,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
         RelatorioCliente tela_cliente = new RelatorioCliente();
         tela_cliente.setVisible(true);
     }//GEN-LAST:event_rClientesFiltroActionPerformed
+
+    private void rClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rClientesActionPerformed
+        // TODO add your handling code here:
+        try{
+            String wSelect = " SELECT c.nome as cliente,\n" +
+            "to_char(dtnasc, 'dd/MM/yyyy') as dtnasc,\n" +
+            "b.nome as cidade\n" +
+            "FROM cliente c, cidade b\n" +
+            "WHERE c.id_cidade = b.id_cidade\n" +
+            "ORDER BY c.nome\n" +
+            "LIMIT 10";
+
+            RelatorioControle objRelController = new RelatorioControle();
+            ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
+
+            JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
+            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioCliente.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
+            JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
+            jpViewer.setVisible(true);//abre o relatório para visualização
+            jpViewer.toFront();//define o form a frente da aplicação
+
+        }catch(JRException ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
+        }
+    }//GEN-LAST:event_rClientesActionPerformed
+
+    private void rEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rEstoqueActionPerformed
+        // TODO add your handling code here:
+        try{
+            String wSelect = " SELECT  COUNT(m.id_veiculo), SUM(m.preco)\n" +
+                    "FROM veiculo m";
+
+            RelatorioControle objRelController = new RelatorioControle();
+            ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
+
+            JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
+            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioEstoque.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
+            JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
+            jpViewer.setVisible(true);//abre o relatório para visualização
+            jpViewer.toFront();//define o form a frente da aplicação
+
+        }catch(JRException ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
+        }
+    }//GEN-LAST:event_rEstoqueActionPerformed
 
 
     /**
@@ -403,7 +407,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnVendas;
     private javax.swing.JMenuItem rClientes;
     private javax.swing.JMenuItem rClientesFiltro;
-    private javax.swing.JMenuItem rMontadoras;
+    private javax.swing.JMenuItem rEstoque;
     private javax.swing.JMenuItem rVeiculos;
+    private javax.swing.JMenuItem rVeiculosFiltro;
     // End of variables declaration//GEN-END:variables
 }

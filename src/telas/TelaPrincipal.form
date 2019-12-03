@@ -97,14 +97,6 @@
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="rMontadoras">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Montadoras"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rMontadorasActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="rClientes">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Clientes"/>
@@ -127,6 +119,22 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rVeiculosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="rVeiculosFiltro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ve&#xed;culos - Filtro (Ano)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rVeiculosFiltroActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="rEstoque">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Estoque"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rEstoqueActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioEstoque" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c9397154-1a21-4229-bb32-76867133599a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  COUNT(m.id_veiculo), SUM(m.preco)
+FROM veiculo m]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="sum" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="34" uuid="892b7878-7392-4769-a80e-505861ccbc55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Relatório Estoque]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="214" height="20" uuid="b304dcff-52a3-4bc5-9507-1348407629a9"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE VEÍCULOS EM ESTOQUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="2" width="164" height="20" uuid="7f2e1349-e64b-4546-8a67-570cb5b5a45a"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[VALOR TOTAL EM ESTOQUE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="8b81fdcc-5864-4abc-80a3-9404a22348a9"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="100" height="20" uuid="d19d9624-38bd-46fa-bd51-dcb18a0e5f93"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -254,7 +254,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             objVeiculo.setPreco(Double.parseDouble(txtPreco.getText().trim()));
             objVeiculo.setNum_portas(txtPortas.getText().trim());
             objVeiculo.setQuantidade(txtQuantidade.getText().trim());
-            objVeiculo.setQuantidade(txtAno.getText().trim());
+            objVeiculo.setAno(txtAno.getText().trim());
             
             Combos m = (Combos) jComboMontadora.getSelectedItem();
             String montadora = m.getCodigo();
@@ -378,7 +378,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             txtPreco.setText(String.valueOf(objVeiculo.getPreco()));
             txtPortas.setText(objVeiculo.getNum_portas());
             txtQuantidade.setText(objVeiculo.getQuantidade());
-            txtAno.setText(objVeiculo.getQuantidade());
+            txtAno.setText(objVeiculo.getAno());
             cbComboClassificacao.SetaComboBox(String.valueOf(objVeiculo.getId_classificacao()));
             cbComboMontadora.SetaComboBox(String.valueOf(objVeiculo.getId_montadora()));
             

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVeiculos" language="groovy" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="862b7d5d-8ed6-4477-a9e8-26382fadb742">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVeiculo" language="groovy" pageWidth="800" pageHeight="842" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c03f0154-38e4-42a4-9689-035d992942b6">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="ano" class="java.lang.String"/>
-	<queryString>
+	<queryString language="SQL">
 		<![CDATA[select * from veiculo a
 INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 	</queryString>
@@ -28,9 +27,9 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="53" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="25" y="0" width="555" height="34" uuid="00d066a0-5fa7-4d1b-a6e1-91b2c4eb1be6"/>
+				<reportElement x="0" y="12" width="555" height="34" uuid="7b2840dd-89a6-4f0b-9e15-7c1b4137b065"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
@@ -39,52 +38,40 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="40" splitType="Stretch">
-			<staticText>
-				<reportElement x="25" y="0" width="123" height="20" uuid="fb4fc3b8-6aa1-4612-9b84-8d8cea4f0e5a"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[ANO DE FABRICAÇÃO:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="164" y="0" width="100" height="20" uuid="29333d01-f6d2-4828-a36a-245531c9aae2"/>
-				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="50" splitType="Stretch">
+		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="0914e564-0870-4022-bb3c-27be052f023a"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="bd7342fe-5db3-48af-b22e-eed4c780065f"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[NOME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="2" width="100" height="20" uuid="3d9451f5-9e52-463d-b690-11da6f3b9411"/>
+				<reportElement x="150" y="2" width="100" height="20" uuid="ddad8a1f-f99d-446d-8877-93613a2a683d"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[PLACA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="2" width="100" height="20" uuid="f4331f81-c1c7-4913-bbdc-89b85e853c67"/>
+				<reportElement x="296" y="0" width="100" height="20" uuid="9322c40c-e53f-46ed-979c-d43b190c0660"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[PREÇO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="438" y="2" width="100" height="20" uuid="0724379a-a99d-4611-854d-aa5db896cd6f"/>
+				<reportElement x="449" y="2" width="100" height="20" uuid="b112e653-a794-438b-ad6d-8e494e1d575f"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[ANO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="560" y="0" width="100" height="20" uuid="0ad314ec-9f36-4129-9b20-444d6aec7ef1"/>
+				<reportElement x="607" y="0" width="100" height="20" uuid="49ce1a31-7f16-4275-b264-76b454263ac2"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
@@ -95,23 +82,23 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="a2178b7e-3238-4674-b249-d1cbad81f81e"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b1eac309-5a86-4c84-ab93-473b0db71d4d"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="100" height="20" uuid="e454fbaf-05af-4390-a0c1-123781d6d744"/>
+				<reportElement x="150" y="0" width="100" height="20" uuid="69309207-3ec2-4e79-8cc9-490af7db455f"/>
 				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="0" width="100" height="20" uuid="de82e6a7-0073-4e6e-bbc7-0e2863280666"/>
+				<reportElement x="296" y="0" width="100" height="20" uuid="e746adf2-6905-4ac0-ba63-a1b21989a0a2"/>
 				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="438" y="0" width="100" height="20" uuid="2fc98046-273f-499e-af77-32c9a9881ac5"/>
+				<reportElement x="449" y="0" width="100" height="20" uuid="35997906-6d27-4a8e-9c64-6cb70c6539d0"/>
 				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="0" width="100" height="20" uuid="802ec16c-afeb-45ff-89b8-ff93e6a5340f"/>
+				<reportElement x="607" y="0" width="100" height="20" uuid="d8a6c4ee-3fd4-4813-bcea-fd9c40f0c905"/>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 		</band>

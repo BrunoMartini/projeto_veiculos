@@ -53,7 +53,7 @@ public class VeiculoControle {
             stmt.setInt(6, objVeiculo.getId_montadora());
             stmt.setInt(7, objVeiculo.getId_classificacao());
             stmt.setString(8, objVeiculo.getNome());
-            stmt.setString(9, objVeiculo.getPreco());
+            stmt.setDouble(9, objVeiculo.getPreco());
             stmt.setString(10, objVeiculo.getNum_portas());
             stmt.setString(11, objVeiculo.getQuantidade());
             stmt.setString(12, objVeiculo.getKm());
@@ -91,7 +91,7 @@ public class VeiculoControle {
             stmt.setInt(6, objVeiculo.getId_montadora());
             stmt.setInt(7, objVeiculo.getId_classificacao());
             stmt.setString(8, objVeiculo.getNome());
-            stmt.setString(9, objVeiculo.getPreco());
+            stmt.setDouble(9, objVeiculo.getPreco());
             stmt.setString(10, objVeiculo.getNum_portas());
             stmt.setString(11, objVeiculo.getQuantidade());
             stmt.setString(12, objVeiculo.getKm());
@@ -241,7 +241,7 @@ public class VeiculoControle {
                     objVeiculo.setId_montadora(rs.getInt(7));
                     objVeiculo.setId_classificacao(rs.getInt(8));
                     objVeiculo.setNome(rs.getString(9));
-                    objVeiculo.setPreco(rs.getString(10)); 
+                    objVeiculo.setPreco(rs.getDouble(10)); 
                     objVeiculo.setNum_portas(rs.getString(11));
                     objVeiculo.setQuantidade(rs.getString(12));
                     objVeiculo.setKm(rs.getString(13));
