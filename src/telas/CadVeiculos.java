@@ -8,6 +8,7 @@ package telas;
 import controles.VeiculoControle;
 import ferramentas.CaixaDeDialogo;
 import ferramentas.Combos;
+import java.text.DecimalFormat;
 import modelos.Veiculo;
 
 /**
@@ -250,7 +251,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             objVeiculo.setRenavam(txtRenavam.getText().trim());
             objVeiculo.setCombustivel(txtCombustivel.getText().trim());
             objVeiculo.setNome(txtNome.getText().trim());
-            objVeiculo.setPreco(txtPreco.getText().trim());
+            objVeiculo.setPreco(Double.parseDouble(txtPreco.getText().trim()));
             objVeiculo.setNum_portas(txtPortas.getText().trim());
             objVeiculo.setQuantidade(txtQuantidade.getText().trim());
             objVeiculo.setQuantidade(txtAno.getText().trim());
@@ -364,6 +365,7 @@ public class CadVeiculos extends javax.swing.JFrame {
         }
     }
      private void preencherCampos(){
+         
         try{
             lblId.setText(String.valueOf(objVeiculo.getId_veiculo()));
             txtCor.setText(objVeiculo.getCor());
@@ -373,7 +375,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             txtRenavam.setText(objVeiculo.getRenavam());
             txtCombustivel.setText(objVeiculo.getCombustivel());
             txtNome.setText(objVeiculo.getNome());
-            txtPreco.setText(objVeiculo.getPreco());
+            txtPreco.setText(String.valueOf(objVeiculo.getPreco()));
             txtPortas.setText(objVeiculo.getNum_portas());
             txtQuantidade.setText(objVeiculo.getQuantidade());
             txtAno.setText(objVeiculo.getQuantidade());
