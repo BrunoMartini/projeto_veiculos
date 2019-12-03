@@ -113,6 +113,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rClientesActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="rClientesFiltro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Clientes - Filtro (Data Nascimento)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rClientesFiltroActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="rVeiculos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>

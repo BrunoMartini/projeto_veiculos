@@ -51,6 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnRelatorios = new javax.swing.JMenu();
         rMontadoras = new javax.swing.JMenuItem();
         rClientes = new javax.swing.JMenuItem();
+        rClientesFiltro = new javax.swing.JMenuItem();
         rVeiculos = new javax.swing.JMenuItem();
         mnSair = new javax.swing.JMenu();
         mnSai = new javax.swing.JMenuItem();
@@ -155,6 +156,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnRelatorios.add(rClientes);
 
+        rClientesFiltro.setText("Clientes - Filtro (Data Nascimento)");
+        rClientesFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rClientesFiltroActionPerformed(evt);
+            }
+        });
+        mnRelatorios.add(rClientesFiltro);
+
         rVeiculos.setText("Veículos");
         rVeiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,8 +262,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void rClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rClientesActionPerformed
         // TODO add your handling code here:
         try{
-            String wSelect = " SELECT nome, cpf, telefone,to_char(dtnasc,'dd/mm/yyyy')\n" +
-                    "FROM cliente c\n" +
+            String wSelect = " SELECT c.nome as cliente,\n" +
+                    "to_char(dtnasc, 'dd/MM/yyyy') as dtnasc,\n" +
+                    "b.nome as cidade\n" +
+                    "FROM cliente c, cidade b\n" +
+                    "WHERE c.id_cidade = b.id_cidade\n" +
                     "ORDER BY c.nome\n" +
                     "LIMIT 10";
             
@@ -329,6 +341,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rVeiculosActionPerformed
 
+    private void rClientesFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rClientesFiltroActionPerformed
+        // TODO add your handling code here:
+        RelatorioCliente tela_cliente = new RelatorioCliente();
+        tela_cliente.setVisible(true);
+    }//GEN-LAST:event_rClientesFiltroActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -384,6 +402,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnVeiculos;
     private javax.swing.JMenuItem mnVendas;
     private javax.swing.JMenuItem rClientes;
+    private javax.swing.JMenuItem rClientesFiltro;
     private javax.swing.JMenuItem rMontadoras;
     private javax.swing.JMenuItem rVeiculos;
     // End of variables declaration//GEN-END:variables
