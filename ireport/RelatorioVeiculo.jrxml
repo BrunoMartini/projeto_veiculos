@@ -19,9 +19,9 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 	<field name="num_portas" class="java.lang.String"/>
 	<field name="data_exclusao" class="java.sql.Date"/>
 	<field name="quantidade" class="java.lang.String"/>
+	<field name="preco" class="java.math.BigDecimal"/>
 	<field name="km" class="java.lang.String"/>
 	<field name="ano" class="java.lang.String"/>
-	<field name="preco" class="java.math.BigDecimal"/>
 	<field name="descricao" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>

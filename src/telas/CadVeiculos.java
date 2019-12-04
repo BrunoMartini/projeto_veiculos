@@ -365,6 +365,7 @@ public class CadVeiculos extends javax.swing.JFrame {
         }
     }
      private void preencherCampos(){
+         DecimalFormat df = new DecimalFormat("0.00");
          
         try{
             lblId.setText(String.valueOf(objVeiculo.getId_veiculo()));
@@ -375,7 +376,7 @@ public class CadVeiculos extends javax.swing.JFrame {
             txtRenavam.setText(objVeiculo.getRenavam());
             txtCombustivel.setText(objVeiculo.getCombustivel());
             txtNome.setText(objVeiculo.getNome());
-            txtPreco.setText(String.valueOf(objVeiculo.getPreco()));
+            txtPreco.setText(df.format(objVeiculo.getPreco()));
             txtPortas.setText(objVeiculo.getNum_portas());
             txtQuantidade.setText(objVeiculo.getQuantidade());
             txtAno.setText(objVeiculo.getAno());

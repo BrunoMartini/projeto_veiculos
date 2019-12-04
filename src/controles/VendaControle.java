@@ -35,7 +35,7 @@ public class VendaControle {
         PreparedStatement stmt = null;
         
         try{
-            stmt = con.prepareStatement("INSERT INTO venda(dtvenda, forma_pagamento, valor, id_veiculo, id_cliente) VALUES(?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO venda(dtvenda, forma_pagamento, valor, id_veiculo, id_cliente) VALUES(?,?,?,?,?)");
             Date data_venda = Date.valueOf(objVenda.getDtvenda());  
             stmt.setDate(1, data_venda);
             stmt.setString(2, objVenda.getForma_pagamento());

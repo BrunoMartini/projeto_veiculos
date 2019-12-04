@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVeiculos" language="groovy" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="862b7d5d-8ed6-4477-a9e8-26382fadb742">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVeiculos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e9d25864-4ba7-423a-9605-69fc084eb4c5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="ano" class="java.lang.String"/>
-	<queryString>
+	<queryString language="SQL">
 		<![CDATA[select * from veiculo a
 INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 	</queryString>
@@ -28,9 +28,9 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="53" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="25" y="0" width="555" height="34" uuid="00d066a0-5fa7-4d1b-a6e1-91b2c4eb1be6"/>
+				<reportElement x="0" y="0" width="555" height="34" uuid="8bb3fa9b-9a98-4925-8290-1408e62d093b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
@@ -39,79 +39,64 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="40" splitType="Stretch">
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="126" y="0" width="100" height="20" uuid="e15f4309-2e1d-4c44-ab73-cedfba748a22"/>
+				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="25" y="0" width="123" height="20" uuid="fb4fc3b8-6aa1-4612-9b84-8d8cea4f0e5a"/>
+				<reportElement x="10" y="0" width="100" height="20" uuid="bb709ba4-601b-4344-9387-74107870a0ef"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[ANO DE FABRICAÇÃO:]]></text>
+				<text><![CDATA[A partir do ano:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="164" y="0" width="100" height="20" uuid="29333d01-f6d2-4828-a36a-245531c9aae2"/>
-				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="50" splitType="Stretch">
+		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="0914e564-0870-4022-bb3c-27be052f023a"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[NOME]]></text>
+				<reportElement x="0" y="0" width="100" height="20" uuid="3c4b0b2e-8844-4a52-ab63-579962702862"/>
+				<text><![CDATA[nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="2" width="100" height="20" uuid="3d9451f5-9e52-463d-b690-11da6f3b9411"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[PLACA]]></text>
+				<reportElement x="131" y="2" width="100" height="20" uuid="d92b482a-8312-466b-99f7-047fb7d43eb2"/>
+				<text><![CDATA[placa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="2" width="100" height="20" uuid="f4331f81-c1c7-4913-bbdc-89b85e853c67"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[PREÇO]]></text>
+				<reportElement x="280" y="2" width="100" height="20" uuid="fe9f385a-4f41-4592-ad5f-c856def665b1"/>
+				<text><![CDATA[preco]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="438" y="2" width="100" height="20" uuid="0724379a-a99d-4611-854d-aa5db896cd6f"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[ANO]]></text>
+				<reportElement x="422" y="2" width="100" height="20" uuid="8004b618-68b6-40ac-8b28-bcf688ec4831"/>
+				<text><![CDATA[ano]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="560" y="0" width="100" height="20" uuid="0ad314ec-9f36-4129-9b20-444d6aec7ef1"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[MONTADORA]]></text>
+				<reportElement x="536" y="2" width="100" height="20" uuid="208c7b9e-5188-46f1-9152-3c91f6e8034b"/>
+				<text><![CDATA[descricao]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="a2178b7e-3238-4674-b249-d1cbad81f81e"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="1a54123e-0b89-4f8b-9699-298ee27bd9a7"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="100" height="20" uuid="e454fbaf-05af-4390-a0c1-123781d6d744"/>
+				<reportElement x="131" y="6" width="100" height="20" uuid="a59bfc0e-1f3f-4759-8e38-afa8780a0b35"/>
 				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="0" width="100" height="20" uuid="de82e6a7-0073-4e6e-bbc7-0e2863280666"/>
+				<reportElement x="280" y="7" width="100" height="20" uuid="4337d737-76e6-469a-8bb3-e1debe15b712"/>
 				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="438" y="0" width="100" height="20" uuid="2fc98046-273f-499e-af77-32c9a9881ac5"/>
+				<reportElement x="422" y="6" width="100" height="20" uuid="408c425e-9365-405a-bc0d-a1630a7bff45"/>
 				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="560" y="0" width="100" height="20" uuid="802ec16c-afeb-45ff-89b8-ff93e6a5340f"/>
+				<reportElement x="536" y="7" width="100" height="20" uuid="0e806f4d-41dd-4c95-8428-bf882403c759"/>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 		</band>
