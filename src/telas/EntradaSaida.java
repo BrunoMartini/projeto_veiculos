@@ -5,14 +5,21 @@
  */
 package telas;
 
+import banco.Conexao;
 import static banco.Conexao.obterConexao;
+import controles.EntradaControle;
+import ferramentas.CaixaDeDialogo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelos.Entrada;
 
 /**
  *
@@ -20,12 +27,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EntradaSaida extends javax.swing.JFrame {
     
-    static Connection con;
-    public static Statement stmt;
+    Entrada objEntrada;
+    EntradaControle objEntradaControle;
+    
+  
     
     public EntradaSaida() {
         initComponents();
     }
+    
+    private void atualizarTabela(){
+        try{
+            
+            objEntradaControle = new EntradaControle(null, jtbEntrada);
+            objEntradaControle.preencher();
+            
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }
+    }
+    
+   
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,7 +63,7 @@ public class EntradaSaida extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btnProcessar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabelaDados = new javax.swing.JTable();
+        jtbEntrada = new javax.swing.JTable();
         lblOperacao = new javax.swing.JLabel();
         rbEntrada = new javax.swing.JRadioButton();
         rbSaida = new javax.swing.JRadioButton();
@@ -76,15 +99,15 @@ public class EntradaSaida extends javax.swing.JFrame {
         });
         getContentPane().add(btnProcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
 
-        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
+        jtbEntrada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade"
+                "", "", ""
             }
         ));
-        jScrollPane2.setViewportView(tabelaDados);
+        jScrollPane2.setViewportView(jtbEntrada);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 450, 200));
 
@@ -106,44 +129,13 @@ public class EntradaSaida extends javax.swing.JFrame {
 
     private void btnProcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessarActionPerformed
         // TODO add your handling code here:
-        int linha = tabelaDados.getSelectedRow();
-        if (validarDados() && (linha >= 0)) {
-            String sql = "";
-            if (rbEntrada.isSelected()) {
-                sql = "UPDATE veiculo SET quantidade=quantidade+? WHERE id_veiculo=?";                
-            } else {
-                sql = "UPDATE veiculo SET quantidade=quantidade-? WHERE id_veiculo=?";                                
-            }
-            
-            try {
-                PreparedStatement stmt = con.prepareStatement(null);
-                stmt.setString(1, txtQuantidade.getText());
-                stmt.setString(2, tabelaDados.getValueAt(linha, 0).toString());
-                stmt.execute();
-                stmt.close();
-                mostrarDados();
-                JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro! Verifique os campos.");
-        }
-        txtQuantidade.setText("");
-        txtQuantidade.grabFocus();        
+               
                                       
     }//GEN-LAST:event_btnProcessarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        try {
-            
-            Connection con = obterConexao();
-            stmt = con.createStatement();
-            System.out.print("Conexão com Banco de Dados Criada!");
-        } catch (Exception ex) {
-            System.out.print(ex);
-        }
+         
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -188,22 +180,7 @@ public class EntradaSaida extends javax.swing.JFrame {
         }
     }
     
-    private void mostrarDados() {
-       try {
-           PreparedStatement stmt = con.prepareStatement("SELECT * FROM veiculo");
-           ResultSet rs = stmt.executeQuery();
-           DefaultTableModel model = (DefaultTableModel) tabelaDados.getModel();
-           model.setRowCount(0); // Limpar Tabela
-           while (rs.next()) {
-               Object linha[] = {rs.getString("id_veiculo"), rs.getString("nome"),
-                                 rs.getString("quantidade")};
-               model.addRow(linha);
-           }   
-           stmt.close();
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
-    }
+    
     private boolean validarDados() {
         if (txtQuantidade.getText().trim().length() == 0) {
             return false;
@@ -222,11 +199,11 @@ public class EntradaSaida extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtbEntrada;
     private javax.swing.JLabel lblOperacao;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JRadioButton rbEntrada;
     private javax.swing.JRadioButton rbSaida;
-    private javax.swing.JTable tabelaDados;
     private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }
