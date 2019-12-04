@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVendas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fba394c-1aee-4564-b709-ece764c6f07b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVendas" language="groovy" pageWidth="750" pageHeight="842" columnWidth="710" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fba394c-1aee-4564-b709-ece764c6f07b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
-		<![CDATA[select * from venda]]>
+	<queryString>
+		<![CDATA[
+
+SELECT c.id_venda, c.forma_pagamento as venda,
+to_char(dtvenda, 'dd/MM/yyyy') as dtvenda,
+b.nome as cliente, d.nome as veiculo
+FROM venda c, cliente b, veiculo d
+WHERE c.id_cliente = d.id_veiculo
+]]>
 	</queryString>
 	<field name="id_venda" class="java.lang.Integer"/>
-	<field name="dtvenda" class="java.sql.Date"/>
-	<field name="forma_pagamento" class="java.lang.String"/>
-	<field name="valor" class="java.lang.String"/>
-	<field name="id_veiculo" class="java.lang.Integer"/>
-	<field name="id_cliente" class="java.lang.Integer"/>
+	<field name="venda" class="java.lang.String"/>
+	<field name="dtvenda" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="veiculo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="119" y="16" width="522" height="34" uuid="be586029-8db3-4153-940b-2e120a671673"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO VENDAS]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
@@ -24,24 +38,52 @@
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="39" y="2" width="100" height="20" uuid="80b8f7a0-87b1-4e22-981e-4d2a268460dc"/>
-				<text><![CDATA[dtvenda]]></text>
+				<reportElement x="0" y="0" width="100" height="20" uuid="798c9efb-3f05-4c87-8d7f-a0dac287ebb0"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="231" y="2" width="100" height="20" uuid="cbba99f0-a28c-44eb-a9ae-0801a14913e7"/>
-				<text><![CDATA[id_cliente]]></text>
+				<reportElement x="478" y="0" width="100" height="20" uuid="643bbcf5-972c-4bc9-bb74-946b7cb5c87a"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DATA DA VENDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="0" width="100" height="20" uuid="599e2066-01eb-4d6e-bcbc-d1d449c3a0bb"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="610" y="0" width="100" height="20" uuid="d20d5205-f97c-4d17-9320-c88cac37175d"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[VEÍCULO]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="56" splitType="Stretch">
 			<textField>
-				<reportElement x="39" y="3" width="100" height="20" uuid="bf0668f9-c46f-44a9-a947-315ca4ef7cb0"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="938e9fec-e460-48df-a49c-7d7897f38519"/>
+				<textFieldExpression><![CDATA[$F{venda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="0" width="100" height="20" uuid="3e8b48f1-67ef-4b67-82b5-1c86f6996646"/>
 				<textFieldExpression><![CDATA[$F{dtvenda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="231" y="14" width="100" height="20" uuid="b84dfca6-b394-42f5-b025-3c3931ba732b"/>
-				<textFieldExpression><![CDATA[$F{id_cliente}]]></textFieldExpression>
+				<reportElement x="148" y="0" width="100" height="20" uuid="8772250a-7ea5-4662-8195-21b0407dc520"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="610" y="0" width="100" height="20" uuid="77e0c8d0-a4ec-4769-a6b1-b2c5ee47181f"/>
+				<textFieldExpression><![CDATA[$F{veiculo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -20,33 +20,33 @@ LIMIT 10]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="67" splitType="Stretch">
+		<band height="84" splitType="Stretch">
 			<staticText>
-				<reportElement x="18" y="17" width="522" height="34" uuid="8c4cbe75-3f63-4871-a9ca-707c2e3394f2"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+				<reportElement x="56" y="12" width="522" height="34" uuid="2e1dd2e5-eb3f-4e47-ba32-15c93def9bdf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RELATÓRIO DE CLIENTES]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
+		<band height="74" splitType="Stretch">
 			<staticText>
-				<reportElement x="18" y="0" width="128" height="20" uuid="31460e44-8879-4673-b82f-16d238223a35"/>
+				<reportElement x="0" y="0" width="128" height="20" uuid="31460e44-8879-4673-b82f-16d238223a35"/>
 				<textElement>
-					<font isBold="true" isUnderline="true"/>
+					<font isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Nascimento a partir de:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="146" y="0" width="100" height="20" uuid="e6271715-dd64-4cdb-9434-67703dfa0638"/>
+				<reportElement x="128" y="0" width="100" height="20" uuid="e6271715-dd64-4cdb-9434-67703dfa0638"/>
 				<textFieldExpression><![CDATA[$P{dtnasc}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="51" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="20" uuid="edc21473-42e0-4505-a842-5fa61f95ce2c"/>
 				<textElement>

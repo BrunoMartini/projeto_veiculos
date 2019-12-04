@@ -54,6 +54,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         rVeiculos = new javax.swing.JMenuItem();
         rVeiculosFiltro = new javax.swing.JMenuItem();
         rEstoque = new javax.swing.JMenuItem();
+        rVendas = new javax.swing.JMenuItem();
         mnSair = new javax.swing.JMenu();
         mnSai = new javax.swing.JMenuItem();
 
@@ -180,6 +181,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnRelatorios.add(rEstoque);
+
+        rVendas.setText("Vendas");
+        rVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rVendasActionPerformed(evt);
+            }
+        });
+        mnRelatorios.add(rVendas);
 
         jMenuBar1.add(mnRelatorios);
 
@@ -351,6 +360,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rEstoqueActionPerformed
 
+    private void rVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rVendasActionPerformed
+        // TODO add your handling code here:
+         try{
+            String wSelect = " SELECT c.id_venda as venda, c.forma_pagamento as forma_pagamento,\n" +
+                    "to_char(dtvenda, 'dd/MM/yyyy') as dtvenda,\n" +
+                    "b.nome as cliente, d.nome as veiculo\n" +
+                    "FROM venda c, cliente b, veiculo d\n" +
+                    "WHERE c.id_cliente = b.id_cliente";
+
+            RelatorioControle objRelController = new RelatorioControle();
+            ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório
+
+            JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
+            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/RelatorioVendas.jasper", new HashMap(), relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
+            JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
+            jpViewer.setVisible(true);//abre o relatório para visualização
+            jpViewer.toFront();//define o form a frente da aplicação
+
+        }catch(JRException ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage(), 'e');
+        }
+    }//GEN-LAST:event_rVendasActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -410,5 +442,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem rEstoque;
     private javax.swing.JMenuItem rVeiculos;
     private javax.swing.JMenuItem rVeiculosFiltro;
+    private javax.swing.JMenuItem rVendas;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,11 +15,11 @@ FROM veiculo m]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="34" uuid="892b7878-7392-4769-a80e-505861ccbc55"/>
+				<reportElement x="12" y="15" width="522" height="34" uuid="9dffe857-66ed-45ea-8630-11b33e368023"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18"/>
+					<font size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Relatório Estoque]]></text>
+				<text><![CDATA[RELATÓRIO ESTOQUE]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -36,11 +36,11 @@ FROM veiculo m]]>
 				<text><![CDATA[QUANTIDADE VEÍCULOS EM ESTOQUE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="2" width="164" height="20" uuid="7f2e1349-e64b-4546-8a67-570cb5b5a45a"/>
+				<reportElement x="391" y="0" width="164" height="20" uuid="7f2e1349-e64b-4546-8a67-570cb5b5a45a"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[VALOR TOTAL EM ESTOQUE]]></text>
+				<text><![CDATA[VALOR TOTAL EM ESTOQUE (R$)]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -51,7 +51,7 @@ FROM veiculo m]]>
 				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="0" width="100" height="20" uuid="d19d9624-38bd-46fa-bd51-dcb18a0e5f93"/>
+				<reportElement x="391" y="0" width="100" height="20" uuid="d19d9624-38bd-46fa-bd51-dcb18a0e5f93"/>
 				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
 			</textField>
 		</band>

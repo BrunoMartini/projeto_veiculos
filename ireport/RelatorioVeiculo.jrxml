@@ -27,13 +27,13 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="91" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="12" width="555" height="34" uuid="7b2840dd-89a6-4f0b-9e15-7c1b4137b065"/>
+				<reportElement x="85" y="13" width="522" height="34" uuid="9eeb2e03-5eb9-45aa-9e5f-a439fe823c9e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18"/>
+					<font size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Relatório de Veículos]]></text>
+				<text><![CDATA[RELATÓRIO DE VEÍCULOS]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -41,7 +41,7 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="53" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="20" uuid="bd7342fe-5db3-48af-b22e-eed4c780065f"/>
 				<textElement>
@@ -50,28 +50,28 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 				<text><![CDATA[NOME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="2" width="100" height="20" uuid="ddad8a1f-f99d-446d-8877-93613a2a683d"/>
+				<reportElement x="167" y="0" width="100" height="20" uuid="ddad8a1f-f99d-446d-8877-93613a2a683d"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[PLACA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="296" y="0" width="100" height="20" uuid="9322c40c-e53f-46ed-979c-d43b190c0660"/>
+				<reportElement x="336" y="0" width="100" height="20" uuid="9322c40c-e53f-46ed-979c-d43b190c0660"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[PREÇO]]></text>
+				<text><![CDATA[PREÇO (R$)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="449" y="2" width="100" height="20" uuid="b112e653-a794-438b-ad6d-8e494e1d575f"/>
+				<reportElement x="507" y="0" width="100" height="20" uuid="b112e653-a794-438b-ad6d-8e494e1d575f"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[ANO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="607" y="0" width="100" height="20" uuid="49ce1a31-7f16-4275-b264-76b454263ac2"/>
+				<reportElement x="660" y="0" width="100" height="20" uuid="49ce1a31-7f16-4275-b264-76b454263ac2"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
@@ -86,19 +86,19 @@ INNER JOIN montadora c ON c.id_montadora = a.id_veiculo]]>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="0" width="100" height="20" uuid="69309207-3ec2-4e79-8cc9-490af7db455f"/>
+				<reportElement x="167" y="0" width="100" height="20" uuid="69309207-3ec2-4e79-8cc9-490af7db455f"/>
 				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="296" y="0" width="100" height="20" uuid="e746adf2-6905-4ac0-ba63-a1b21989a0a2"/>
+				<reportElement x="336" y="0" width="100" height="20" uuid="e746adf2-6905-4ac0-ba63-a1b21989a0a2"/>
 				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="449" y="0" width="100" height="20" uuid="35997906-6d27-4a8e-9c64-6cb70c6539d0"/>
+				<reportElement x="507" y="0" width="100" height="20" uuid="35997906-6d27-4a8e-9c64-6cb70c6539d0"/>
 				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="607" y="0" width="100" height="20" uuid="d8a6c4ee-3fd4-4813-bcea-fd9c40f0c905"/>
+				<reportElement x="660" y="0" width="100" height="20" uuid="d8a6c4ee-3fd4-4813-bcea-fd9c40f0c905"/>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 		</band>
