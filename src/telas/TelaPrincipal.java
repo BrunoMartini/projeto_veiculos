@@ -363,11 +363,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void rVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rVendasActionPerformed
         // TODO add your handling code here:
          try{
-            String wSelect = " SELECT c.id_venda as venda, c.forma_pagamento as forma_pagamento,\n" +
+            String wSelect = " select c.id_venda, c.forma_pagamento, c.valor, d.nome,\n" +
                     "to_char(dtvenda, 'dd/MM/yyyy') as dtvenda,\n" +
-                    "b.nome as cliente, d.nome as veiculo\n" +
-                    "FROM venda c, cliente b, veiculo d\n" +
-                    "WHERE c.id_cliente = b.id_cliente";
+                    "v.nome as veiculo\n" +
+                    "FROM venda c, cliente d, veiculo v\n" +
+                    "WHERE c.id_cliente = d.id_cliente\n" +
+                    "AND c.id_veiculo = v.id_veiculo";
 
             RelatorioControle objRelController = new RelatorioControle();
             ResultSet resultSet = objRelController.buscarRelatorio(wSelect);//Buscar os dados do relatório

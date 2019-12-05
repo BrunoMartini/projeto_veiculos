@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVendas" language="groovy" pageWidth="750" pageHeight="842" columnWidth="710" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fba394c-1aee-4564-b709-ece764c6f07b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVendas" language="groovy" pageWidth="1000" pageHeight="842" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fba394c-1aee-4564-b709-ece764c6f07b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[
-
-SELECT c.id_venda, c.forma_pagamento as venda,
+		<![CDATA[select c.id_venda, c.forma_pagamento, c.valor, d.nome,
 to_char(dtvenda, 'dd/MM/yyyy') as dtvenda,
-b.nome as cliente, d.nome as veiculo
-FROM venda c, cliente b, veiculo d
-WHERE c.id_cliente = d.id_veiculo
+v.nome as veiculo
+FROM venda c, cliente d, veiculo v
+WHERE c.id_cliente = d.id_cliente
+AND c.id_veiculo = v.id_veiculo
 ]]>
 	</queryString>
 	<field name="id_venda" class="java.lang.Integer"/>
-	<field name="venda" class="java.lang.String"/>
+	<field name="forma_pagamento" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
 	<field name="dtvenda" class="java.lang.String"/>
-	<field name="cliente" class="java.lang.String"/>
 	<field name="veiculo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -36,54 +36,76 @@ WHERE c.id_cliente = d.id_veiculo
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="68" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="798c9efb-3f05-4c87-8d7f-a0dac287ebb0"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="d14dd6dd-8acf-4ca9-94dd-eeee61f66077"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="478" y="0" width="100" height="20" uuid="643bbcf5-972c-4bc9-bb74-946b7cb5c87a"/>
+				<reportElement x="629" y="0" width="100" height="20" uuid="cfde7c01-b893-4e9f-98eb-6f99c9d2c248"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="0" width="100" height="20" uuid="f986d817-7db1-4aaa-a4f9-2f2968a838e4"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="100" height="20" uuid="5879db7d-d8f7-4e46-8717-f3a23b258c03"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[DATA DA VENDA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="148" y="0" width="100" height="20" uuid="599e2066-01eb-4d6e-bcbc-d1d449c3a0bb"/>
-				<textElement>
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[CLIENTE]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="610" y="0" width="100" height="20" uuid="d20d5205-f97c-4d17-9320-c88cac37175d"/>
+				<reportElement x="815" y="0" width="100" height="20" uuid="9fbd212a-7c99-4827-b034-863403b8c64b"/>
 				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[VEÍCULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="130" height="20" uuid="ed7fcd17-2747-4e9d-a12f-504e9f967928"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[FORMA DE PAGAMENTO]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="56" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="938e9fec-e460-48df-a49c-7d7897f38519"/>
-				<textFieldExpression><![CDATA[$F{venda}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="100" height="20" uuid="d8e217af-0ee6-42d6-9d21-601e195b9c79"/>
+				<textFieldExpression><![CDATA[$F{id_venda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="478" y="0" width="100" height="20" uuid="3e8b48f1-67ef-4b67-82b5-1c86f6996646"/>
+				<reportElement x="629" y="0" width="100" height="20" uuid="6703d03a-8eda-4af0-937b-13b661339e35"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="0" width="100" height="20" uuid="e15a6914-0ffa-4848-8c65-e8c6513cab84"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="100" height="20" uuid="ba488bac-bd78-4035-9c15-6601680f0725"/>
 				<textFieldExpression><![CDATA[$F{dtvenda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="148" y="0" width="100" height="20" uuid="8772250a-7ea5-4662-8195-21b0407dc520"/>
-				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+				<reportElement x="815" y="0" width="145" height="20" uuid="d0561d54-ff93-4619-98f0-30c389699f2c"/>
+				<textFieldExpression><![CDATA[$F{veiculo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="610" y="0" width="100" height="20" uuid="77e0c8d0-a4ec-4769-a6b1-b2c5ee47181f"/>
-				<textFieldExpression><![CDATA[$F{veiculo}]]></textFieldExpression>
+				<reportElement x="440" y="0" width="100" height="20" uuid="ecabcd73-b81a-4bf4-8359-e2f87edad4a4"/>
+				<textFieldExpression><![CDATA[$F{forma_pagamento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
